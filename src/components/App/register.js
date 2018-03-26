@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 
 const Register = (props) => {
-
   return (
     <div className="form-wrapper">
 
@@ -12,7 +11,7 @@ const Register = (props) => {
           <input name="password" type="password" placeholder="Enter a valid password greater than six characters."
             onChange={props.handleChange} />
           <button type="submit" className="custom-btn"
-            disabled={props.disable}>Register</button>
+            disabled={props.disableBtn}>Register</button>
         </form>
 
         <span onClick={props.entryChange} className="login">Login</span>

@@ -5,8 +5,7 @@ const Login = (props) => {
 
   return (
     <div className="form-wrapper">
-
-        <form onSubmit={props.handleLogin}>
+        <form onSubmit={props.handleLogin} method="POST" >
           <input name="email" type="text" placeholder="Enter your email"
           onChange={props.handleChange}/>
           <input name="password" type="password" placeholder="Enter your password"
