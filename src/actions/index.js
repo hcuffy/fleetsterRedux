@@ -18,7 +18,8 @@ const handleChange = (event) => {
 };
 
 
-const handleSubmit = () => {
+const handleSubmit = (event) => {
+  event.preventDefault();
   return (dispatch, getState) => {
     const registering = getState().handleChange;
     dispatch({
@@ -28,7 +29,8 @@ const handleSubmit = () => {
   };
 };
 
-const handleLogin = () => {
+const handleLogin = (event) => {
+  event.preventDefault();
   return (dispatch, getState) => {
     const loggingIn = getState().handleChange;
     dispatch({
