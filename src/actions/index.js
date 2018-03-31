@@ -1,46 +1,11 @@
-export const ENTRY_CHANGE = 'ENTRY_CHANGE';
-export const HANDLE_CHANGE = 'HANDLE_CHANGE';
-export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
-export const LOGGED_IN = 'LOGGED_IN';
-export const HANDLE_LOGIN = 'HANDLE_LOGIN';
-
-const entryChange = () => {
-  return {
-    type: ENTRY_CHANGE
-  };
-};
-
-const handleChange = (event) => {
-  return {
-    type: HANDLE_CHANGE,
-    payload: event.target
-  };
-};
-
-
-const handleSubmit = () => {
-  return (dispatch, getState) => {
-    const registering = getState().handleChange;
-    dispatch({
-      type: HANDLE_SUBMIT,
-      payload: registering
-    });
-  };
-};
-
-const handleLogin = () => {
-  return (dispatch, getState) => {
-    const loggingIn = getState().handleChange;
-    dispatch({
-      type: HANDLE_LOGIN,
-      payload: loggingIn
-    });
-  };
-};
+import handleEntryChange from './handleEntryChange'
+import handleInput from './handleInputChange'
+import handleSubmit from './handleSubmit'
+import handleLogin from './handleLogin'
 
 export const actionCreators = {
-  entryChange,
-  handleChange,
+  handleEntryChange,
+  handleInput,
   handleSubmit,
   handleLogin
 

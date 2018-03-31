@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import '../style.css';
 
 const Register = (props) => {
   return (
@@ -7,9 +7,9 @@ const Register = (props) => {
 
         <form onSubmit={props.handleSubmit}>
           <input name="email" type="text" placeholder="Enter a valid email."
-            onChange={props.handleChange}/>
+            onChange={props.handleInput}/>
           <input name="password" type="password" placeholder="Enter a valid password greater than six characters."
-            onChange={props.handleChange} />
+            onChange={props.handleInput} />
           <button type="submit" className="custom-btn"
             disabled={props.disableBtn}>Register</button>
         </form>

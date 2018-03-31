@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import './style.css';
-import Register from './register';
-import Login from './login';
-import Home from './home';
-import { actionCreators } from '../../actions';
+import Register from './components/register';
+import Login from './components/login';
+import Home from './components/home';
+import { actionCreators } from '../actions';
 
 class App extends Component {
 
@@ -15,15 +15,15 @@ class App extends Component {
         </h1>
 
         {this.props.registering && <Register
-          entryChange={this.props.actions.entryChange}
-          handleChange={this.props.actions.handleChange}
+          entryChange={this.props.actions.handleEntryChange}
+          handleInput={this.props.actions.handleInput}
           disableBtn={this.props.disable}
           handleSubmit={this.props.actions.handleSubmit}
         />}
 
         {this.props.login && <Login
-          entryChange={this.props.actions.entryChange}
-          handleChange = {this.props.actions.handleChange}
+          entryChange={this.props.actions.handleEntryChange}
+          handleInput = {this.props.actions.handleInput}
           handleLogin = {this.props.actions.handleLogin}
         />}
 
@@ -38,14 +38,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-console.log(state.registering.logged_in);
     return {
-      registering: state.registering.registering,
-      login: state.registering.login,
+      registering: state.handleRegister.registering,
+      login: state.handleRegister.login,
       disable: state.handleChange.disable,
       email: state.handleChange.email,
       password: state.handleChange.password,
-      logged_in: state.registering.logged_in
+      logged_in: state.handleRegister.logged_in
     }
 }
 
