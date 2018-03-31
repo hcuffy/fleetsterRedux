@@ -1,5 +1,5 @@
 import { HANDLE_CHANGE } from '../actions/actionTypes';
-
+// TODO:  clean up intial state
 const initialLoadState = {
   registering: true ,
   login: false,
@@ -17,6 +17,7 @@ const handleChangeReducer = (state = initialLoadState, action) => {
         password,
         disable
       } = state;
+
       const name = action.payload.name;
       email = name === 'email' ? action.payload.value : state.email;
       password = name === 'password' ? action.payload.value : state.password;

@@ -1,5 +1,5 @@
 import { ENTRY_CHANGE } from '../actions/actionTypes';
-
+// TODO: clean up initial state
 const initialLoadState = {
   registering: true ,
   login: false,

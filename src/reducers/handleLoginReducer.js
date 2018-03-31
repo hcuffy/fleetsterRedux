@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { HANDLE_LOGIN } from '../actions/actionTypes';
 
+// TODO: clean up state.
 const initialLoadState = {
   registering: true ,
   login: false,
@@ -11,6 +12,7 @@ const initialLoadState = {
 };
 
 const handleLoginReducer = (state = initialLoadState, action) => {
+// TODO: move logic to actions
   switch (action.type) {
     case HANDLE_LOGIN:
       var {

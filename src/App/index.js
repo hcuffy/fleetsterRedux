@@ -14,14 +14,14 @@ class App extends Component {
         <h1 className = "my-header" > Carsharing
         </h1>
 
-        {this.props.registering && <Register
+        {this.props.registering && !this.props.registered && <Register
           entryChange={this.props.actions.handleEntryChange}
           handleInput={this.props.actions.handleInput}
           disableBtn={this.props.disable}
           handleSubmit={this.props.actions.handleSubmit}
         />}
 
-        {this.props.login && <Login
+        {(this.props.registered || this.props.login) && <Login
           entryChange={this.props.actions.handleEntryChange}
           handleInput = {this.props.actions.handleInput}
           handleLogin = {this.props.actions.handleLogin}
@@ -38,13 +38,15 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+// TODO: clean Up props
     return {
       registering: state.handleRegister.registering,
       login: state.handleRegister.login,
       disable: state.handleChange.disable,
       email: state.handleChange.email,
       password: state.handleChange.password,
-      logged_in: state.handleRegister.logged_in
+      logged_in: state.handleRegister.logged_in,
+      registered: state.handleSubmit.registered
     }
 }
 
