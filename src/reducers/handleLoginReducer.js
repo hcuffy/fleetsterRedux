@@ -1,57 +1,38 @@
-import axios from 'axios';
-import { HANDLE_LOGIN } from '../actions/actionTypes';
+import { HANDLE_LOGIN, HANDLE_LOGOUT } from '../actions/actionTypes';
 
-// TODO: clean up state.
 const initialLoadState = {
-  registering: true ,
-  login: false,
-  email: '' ,
-  password: '',
-  disable:true,
+  registering : true,
+  login : false,
   logged_in : false
 };
 
 const handleLoginReducer = (state = initialLoadState, action) => {
-// TODO: move logic to actions
   switch (action.type) {
     case HANDLE_LOGIN:
-      var {
-        email,
-        password,
-        login,
-        registering,
-        logged_in
-      } = action.payload;
-      let formData = {
-        'username': email,
-        'password': password
-      }
-      const url = "http://localhost:3030";
+      const { success, email } = action.payload;
 
-      axios({
-        method: 'post',
-        url: url + '/users/signin',
-        contentType: 'application/json',
-        data: formData,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        crossDomain: true,
-      }).then(function (res) {
-        console.log(res);
-      }).catch(function (err) {
-        console.log(err);
-      });
-      console.log('yay');
-      login = false;
-      registering = false;
-      logged_in = true;
+      let {
+        registering,
+        login,
+        logged_in
+      } = state;
+
+      if(success){
+        registering = false;
+        login = false;
+        logged_in = true;
+      }
+
       return Object.assign({}, state, {
-        email: email,
-        login: login,
-        registering: registering,
-        logged_in: logged_in
+          email : email,
+          registering : registering,
+          login : login,
+          logged_in : logged_in
       });
+
+    case HANDLE_LOGOUT:
+      logged_in = false
+      return Object.assign({}, state, { logged_in : logged_in });
 
     default:
       return state;

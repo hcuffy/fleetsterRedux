@@ -1,8 +1,8 @@
-export const ENTRY_CHANGE = 'ENTRY_CHANGE';
+import { ENTRY_CHANGE } from './actionTypes';
 
 const handleEntryChange = () => {
   return {
-    type: ENTRY_CHANGE
+    type : ENTRY_CHANGE
   };
 };
 

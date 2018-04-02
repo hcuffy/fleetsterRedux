@@ -1,12 +1,8 @@
 import { ENTRY_CHANGE } from '../actions/actionTypes';
-// TODO: clean up initial state
+
 const initialLoadState = {
-  registering: true ,
-  login: false,
-  email: '' ,
-  password: '',
-  disable:true,
-  logged_in : false
+  registering : true,
+  login : false,
 };
 
 const handleRegisterReducer = (state = initialLoadState, action) => {
@@ -16,12 +12,15 @@ const handleRegisterReducer = (state = initialLoadState, action) => {
         login,
         registering
       } = state;
+
       registering = registering === true ? false : true;
       login = login === true ? false : true;
+
       return Object.assign({}, state, {
-        login: login,
-        registering: registering
+        login : login,
+        registering : registering
       })
+
     default:
       return state;
   }

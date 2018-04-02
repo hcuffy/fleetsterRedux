@@ -14,21 +14,22 @@ class App extends Component {
         <h1 className = "my-header" > Carsharing
         </h1>
 
-        {this.props.registering && !this.props.registered && <Register
-          entryChange={this.props.actions.handleEntryChange}
-          handleInput={this.props.actions.handleInput}
-          disableBtn={this.props.disable}
-          handleSubmit={this.props.actions.handleSubmit}
+        { this.props.registering && <Register
+          entryChange = { this.props.actions.handleEntryChange }
+          handleInput = { this.props.actions.handleInput }
+          disableBtn = { this.props.disable }
+          handleSubmit = { this.props.actions.handleSubmit }
+        /> }
+
+        { (this.props.login && !this.props.logged_in) && <Login
+          entryChange = { this.props.actions.handleEntryChange }
+          handleInput = { this.props.actions.handleInput }
+          handleLogin = { this.props.actions.handleLogin }
         />}
 
-        {(this.props.registered || this.props.login) && <Login
-          entryChange={this.props.actions.handleEntryChange}
-          handleInput = {this.props.actions.handleInput}
-          handleLogin = {this.props.actions.handleLogin}
-        />}
-
-        {this.props.logged_in && <Home
-          userInfo={this.props.email}
+        { this.props.logged_in && <Home
+          userInfo = { this.props.email }
+          handleLogout = { this.props.actions.handleLogout}
         />}
 
         </div>
@@ -38,15 +39,15 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-// TODO: clean Up props
     return {
       registering: state.handleRegister.registering,
       login: state.handleRegister.login,
       disable: state.handleChange.disable,
       email: state.handleChange.email,
       password: state.handleChange.password,
-      logged_in: state.handleRegister.logged_in,
-      registered: state.handleSubmit.registered
+      logged_in: state.handleLogin.logged_in,
+      registered: state.handleSubmit.registered,
+
     }
 }
 
