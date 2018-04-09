@@ -9,45 +9,23 @@ import { actionCreators } from '../actions';
 
 class App extends Component {
 
-  render() {
-      return ( <div>
-        <h1 className = "my-header" > Carsharing
-        </h1>
-
-        { this.props.registering && <Register
-          entryChange = { this.props.actions.handleEntryChange }
-          handleInput = { this.props.actions.handleInput }
-          disableBtn = { this.props.disable }
-          handleSubmit = { this.props.actions.handleSubmit }
-        /> }
-
-        { (this.props.login && !this.props.logged_in) && <Login
-          entryChange = { this.props.actions.handleEntryChange }
-          handleInput = { this.props.actions.handleInput }
-          handleLogin = { this.props.actions.handleLogin }
-        />}
-
-        { this.props.logged_in && <Home
-          userInfo = { this.props.email }
-          handleLogout = { this.props.actions.handleLogout}
-        />}
-
-        </div>
-      );
-  }
-
+    render() {
+        return ( <div>
+                    <h1 className = "my-header" > Carsharing
+                    </h1>
+                    { this.props.registering && <Register/> }
+                    { (this.props.login && !this.props.logged_in) && <Login/>}
+                    { this.props.logged_in && <Home/>}
+                 </div>
+                 );
+   }
 }
 
 const mapStateToProps = (state) => {
     return {
       registering: state.handleRegister.registering,
       login: state.handleRegister.login,
-      disable: state.handleChange.disable,
-      email: state.handleChange.email,
-      password: state.handleChange.password,
       logged_in: state.handleLogin.logged_in,
-      registered: state.handleSubmit.registered,
-
     }
 }
 

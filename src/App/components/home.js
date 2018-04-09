@@ -1,13 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { actionCreators } from '../../actions';
+import { bindActionCreators} from 'redux';
 import '../style.css';
 
-const Home = (props) => {
+const Home = ({email, actions}) => {
   return (
     <div className="profile-wrapper">
-        <p className="profile">{props.userInfo}</p>
-        <button className="logout-btn" onClick={props.handleLogout}>Logout</button>
+        <p className="profile">{email}</p>
+        <button className="logout-btn" onClick={actions.handleLogout}>Logout</button>
     </div>
  );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+      email: state.handleChange.email
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

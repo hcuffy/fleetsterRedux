@@ -1,22 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { actionCreators } from '../../actions';
+import { bindActionCreators} from 'redux';
 import '../style.css';
 
-const Register = (props) => {
+const Register = ({disable, actions}) => {
   return (
     <div className="form-wrapper">
 
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={actions.handleSubmit}>
           <input name="email" type="text" placeholder="Enter a valid email."
-            onChange={props.handleInput}/>
+            onChange={actions.handleInput}/>
           <input name="password" type="password" placeholder="Enter a valid password greater than six characters."
-            onChange={props.handleInput} />
+            onChange={actions.handleInput} />
           <button type="submit" className="custom-btn"
-            disabled={props.disableBtn}>Register</button>
+            disabled={disable}>Register</button>
         </form>
-
-        <span onClick={props.entryChange} className="login">Login</span>
+        <span onClick={actions.handleEntryChange} className="login">Login</span>
     </div>
   );
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    return {
+      disable: state.handleChange.disable
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
