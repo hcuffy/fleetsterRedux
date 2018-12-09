@@ -12,8 +12,8 @@ const handleChangeReducer = (state = initialLoadState, action) => {
       let { email, password, disable } = state;
 
       const name = action.payload.name;
-      const emailRegx = new RegExp(/(.+)@(.+){2,}\.(.+){2,}/);
-      const passRegx = new RegExp(/[a-zA-Z0-9_-]{6,}$/);
+      const emailRegx = /(.+)@(.+){2,}\.(.+){2,}/;
+      const passRegx = /[a-zA-Z0-9_-]{6,}$/;
 
       email = name === 'email' ? action.payload.value : state.email;
       password = name === 'password' ? action.payload.value : state.password;
